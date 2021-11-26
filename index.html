@@ -2,7 +2,7 @@
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
-    <title>Aparecida Nutrição</title>
+    <title>Cálculo IMC</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="css/reset.css" />
     <link rel="stylesheet" type="text/css" href="css/index.css" />
@@ -10,12 +10,19 @@
   <body>
     <header>
       <div class="container">
-        <h1 class="titulo">Aparecida Nutrição</h1>
+        <h1 class="titulo">Calculadora de IMC</h1>
       </div>
     </header>
     <main>
       <section class="container">
         <h2>Meus pacientes</h2>
+        <label for="filtrar-tabela">Busca:</label>
+        <input
+          type="text"
+          name="filtro"
+          id="filtrar-tabela"
+          placeholder="Digite o nome do paciente"
+        />
         <table>
           <thead>
             <tr>
@@ -67,6 +74,9 @@
             </tr>
           </tbody>
         </table>
+        <button id="buscar-paciente" class="botao bto-principal">
+          Buscar Paciente
+        </button>
       </section>
     </main>
 
@@ -75,9 +85,7 @@
         ------------------------------------->
     <section class="container">
       <h2 id="titulo-form">Adicionar novo paciente</h2>
-      <ul id="mensagens-erro">
-        
-      </ul>
+      <ul id="mensagens-erro"></ul>
       <form id="form-adiciona">
         <div class="grupo">
           <label for="nome">Nome:</label>
@@ -128,5 +136,7 @@
     <script src="js/calcula-imc.js"></script>
     <script src="js/form.js"></script>
     <script src="js/remover-paciente.js"></script>
+    <script src="js/filtra.js"></script>
+    <script src="js/buscar-paciente.js"></script>
   </body>
 </html>

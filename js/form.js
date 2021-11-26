@@ -6,49 +6,49 @@ botaoEnviar.addEventListener('click', function (event) {
   event.preventDefault()
 
   var form = document.querySelector('#form-adiciona')
-  
+
   //Extrai informações do paciente do form
-  var paciente = obtemPacienteDoForm(form);
+  var paciente = obtemPacienteDoForm(form)
 
   // Cria td e TR do paciente
-  var pacienteTr = montaTr(paciente)
 
   var erros = validaPaciente(paciente)
-  
 
-  if(erros.length > 0){
-    exibeMensagensDeErros(erros);
-  
-  return;
-  };
+  if (erros.length > 0) {
+    exibeMensagensDeErros(erros)
 
- 
+    return
+  }
+
   //Adiciona na tabela
-  var tabela = document.querySelector('#tabela-pacientes')
+  adicionaPacienteTabela(paciente)
 
-  tabela.appendChild(pacienteTr)
+  form.reset()
 
-  form.reset();
+  var mensagemErro = document.querySelector('#mensagens-erro')
 
-  var mensagemErro = document.querySelector('#mensagens-erro');
-  
-  mensagemErro.innerHTML = ""
+  mensagemErro.innerHTML = ''
 })
 
-function exibeMensagensDeErros(erros){
-  var ul = document.querySelector('#mensagens-erro');
-
-  ul.innerHTML = ""
-
-  erros.forEach(function(erro) {
-    var li = document.createElement('li');
-    li.textContent = erro;
-    ul.appendChild(li)
-  });
+function adicionaPacienteTabela(paciente) {
+  var pacienteTr = montaTr(paciente)
+  var tabela = document.querySelector('#tabela-pacientes')
+  tabela.appendChild(pacienteTr)
 }
 
-function obtemPacienteDoForm(form){
+function exibeMensagensDeErros(erros) {
+  var ul = document.querySelector('#mensagens-erro')
 
+  ul.innerHTML = ''
+
+  erros.forEach(function (erro) {
+    var li = document.createElement('li')
+    li.textContent = erro
+    ul.appendChild(li)
+  })
+}
+
+function obtemPacienteDoForm(form) {
   var paciente = {
     nome: form.nome.value,
     peso: form.peso.value,
@@ -57,12 +57,12 @@ function obtemPacienteDoForm(form){
     imc: calculaImc(form.peso.value, form.altura.value)
   }
 
-  return paciente;
+  return paciente
 }
 
-function montaTr(paciente){
-   var pacienteTr = document.createElement('tr')
-   pacienteTr.classList.add('paciente');
+function montaTr(paciente) {
+  var pacienteTr = document.createElement('tr')
+  pacienteTr.classList.add('paciente')
 
   pacienteTr.appendChild(montaTd(paciente.nome, 'info-nome'))
   pacienteTr.appendChild(montaTd(paciente.peso, 'info-peso'))
@@ -70,44 +70,39 @@ function montaTr(paciente){
   pacienteTr.appendChild(montaTd(paciente.gordura, 'info-gordura'))
   pacienteTr.appendChild(montaTd(paciente.imc, 'info-imc'))
 
-   return pacienteTr;
+  return pacienteTr
 }
 
-function montaTd(dado, classe){
-  
+function montaTd(dado, classe) {
   var td = document.createElement('td')
   td.textContent = dado
   td.classList.add(classe)
 
   return td
-
 }
 
- //validar paciente
+//validar paciente
 
-  function validaPaciente(paciente){
+function validaPaciente(paciente) {
+  var erros = []
 
-    var erros = []
-
-    if(paciente.nome.length == 0){
-      erros.push('O nome não pode ser em branco')
-    }
-
-    if(!validaPeso(paciente.peso))
-      erros.push('Peso inválido')
-
-    if(!validaAltura(paciente.altura))
-      erros.push(" Altura Inválida ")
-
-    if(paciente.gordura.length == 0){
-      erros.push('O % de gordura não pode estar em branco')
-    }
-    if(paciente.peso.length == 0){
-      erros.push('O peso não pode ser em branco')
-    }
-    if(paciente.altura.length == 0){
-      erros.push('A Altura não pode ser em branco')
-    }
-    
-    return erros;
+  if (paciente.nome.length == 0) {
+    erros.push('O nome não pode ser em branco')
   }
+
+  if (!validaPeso(paciente.peso)) erros.push('Peso inválido')
+
+  if (!validaAltura(paciente.altura)) erros.push(' Altura Inválida ')
+
+  if (paciente.gordura.length == 0) {
+    erros.push('O % de gordura não pode estar em branco')
+  }
+  if (paciente.peso.length == 0) {
+    erros.push('O peso não pode ser em branco')
+  }
+  if (paciente.altura.length == 0) {
+    erros.push('A Altura não pode ser em branco')
+  }
+
+  return erros
+}
