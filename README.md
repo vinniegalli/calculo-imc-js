@@ -4,7 +4,7 @@
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/vinniegalli/calculo-imc-js?color=blue"><br><br>
   
   <h3> Descrição: </h3>
- <p>Este projeto foi desenvolvido com o intuito de ser uma planilha de pacientes para um profissional da área de saúde para o controle de suas caracteristicas. O sistema consiste em um fomulário para inclusão de novos paciente, um duplo clique em cima do paciente já adicionado exclui da tabela.
+ <p>Este projeto foi desenvolvido com o intuito de ser uma planilha para controle de pacientes de um profissional da área de saúde . O sistema consiste em um fomulário para inclusão de novos paciente, um duplo clique em cima do paciente já adicionado exclui da tabela.
 O botão de buscar pacientes importa uma lista de pacientes de uma API externa.</p><br>
 
 <h3>Tecnologias:</h3>
